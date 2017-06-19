@@ -1,0 +1,97 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "etcd.coreos.com/v1beta1",
+            "kind": "Cluster",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"etcd.coreos.com/v1beta1\",\"kind\":\"Cluster\",\"metadata\":{\"annotations\":{},\"name\":\"kube-etcd\",\"namespace\":\"kube-system\"},\"spec\":{\"size\":1,\"version\":\"3.1.6\"}}\n"
+                },
+                "creationTimestamp": "2017-06-09T21:06:45Z",
+                "name": "kube-etcd",
+                "namespace": "kube-system",
+                "resourceVersion": "8032",
+                "selfLink": "/apis/etcd.coreos.com/v1beta1/namespaces/kube-system/clusters/kube-etcd",
+                "uid": "8b504eea-4d57-11e7-b0e1-06f81c89e2e6"
+            },
+            "spec": {
+                "backup": {
+                    "backupIntervalInSecond": 20,
+                    "cleanupBackupsOnClusterDelete": false,
+                    "maxBackups": 5,
+                    "pod": {
+                        "nodeSelector": {
+                            "node-role.kubernetes.io/master": ""
+                        },
+                        "tolerations": [
+                            {
+                                "effect": "NoSchedule",
+                                "key": "node-role.kubernetes.io/master",
+                                "operator": "Exists"
+                            }
+                        ]
+                    },
+                    "s3": {
+                        "awsSecret": "cluster-secret",
+                        "s3Bucket": "tectonic-backup-test"
+                    },
+                    "storageType": "S3"
+                },
+                "pod": {
+                    "antiAffinity": false,
+                    "etcdEnv": null,
+                    "nodeSelector": {
+                        "node-role.kubernetes.io/master": ""
+                    },
+                    "resources": {},
+                    "tolerations": [
+                        {
+                            "effect": "NoSchedule",
+                            "key": "node-role.kubernetes.io/master",
+                            "operator": "Exists"
+                        }
+                    ]
+                },
+                "selfHosted": {
+                    "bootMemberClientEndpoint": "http://10.3.0.20:12379"
+                },
+                "size": 1,
+                "version": "3.1.6"
+            },
+            "status": {
+                "backupServiceStatus": {
+                    "backupSize": 0,
+                    "backups": 0
+                },
+                "conditions": [
+                    {
+                        "reason": "Current cluster size: 0, desired cluster size: 1",
+                        "transitionTime": "2017-06-09T21:06:45Z",
+                        "type": "ScalingUp"
+                    },
+                    {
+                        "reason": "",
+                        "transitionTime": "2017-06-09T21:07:59Z",
+                        "type": "Ready"
+                    }
+                ],
+                "controlPaused": false,
+                "currentVersion": "3.1.6",
+                "members": {
+                    "ready": [
+                        "kube-etcd-0000"
+                    ]
+                },
+                "phase": "Running",
+                "reason": "",
+                "size": 1,
+                "targetVersion": ""
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {},
+    "resourceVersion": "",
+    "selfLink": ""
+}

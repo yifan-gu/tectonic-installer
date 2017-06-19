@@ -6,6 +6,28 @@
     "namespace": "kube-system"
   },
   "spec": {
+    "backup": {
+      "backupIntervalInSecond": 20,
+      "cleanupBackupsOnClusterDelete": false,
+      "maxBackups": 5,
+      "pod": {
+        "nodeSelector": {
+          "node-role.kubernetes.io/master": ""
+        },
+        "tolerations": [
+          {
+            "effect": "NoSchedule",
+            "key": "node-role.kubernetes.io/master",
+            "operator": "Exists"
+          }
+        ]
+      },
+      "s3": {
+        "awsSecret": "cluster-secret",
+        "s3Bucket": "tectonic-backup-test"
+      },
+      "storageType": "S3"
+    },
     "size": 1,
     "version": "v${etcd_version}",
     "pod": {
