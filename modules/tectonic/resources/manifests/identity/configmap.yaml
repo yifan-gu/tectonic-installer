@@ -3,6 +3,9 @@ apiVersion: v1
 metadata:
   name: tectonic-identity
   namespace: tectonic-system
+  annotations:
+    tectonic-operators.coreos.com/upgrade-strategy: Patch
+    tectonic-operators.coreos.com/upgrade-behaviour: UpgradeIfExists
 data:
   issuer: ${oidc_issuer_url}
   consoleClientID: ${console_client_id}

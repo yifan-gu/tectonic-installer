@@ -3,6 +3,10 @@ kind: ConfigMap
 metadata:
   name: tectonic-custom-error
   namespace: tectonic-system
+  annotations:
+    tectonic-operators.coreos.com/upgrade-strategy: Patch
+    tectonic-operators.coreos.com/upgrade-behaviour: UpgradeIfExists
+spec:
 data:
   custom-http-errors: "404,500,503,504"
   server-name-hash-bucket-size: "1024"

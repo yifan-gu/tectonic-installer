@@ -1,11 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  name: tectonic-console
+  namespace: tectonic-system
   labels:
     k8s-app: tectonic-console
     component: ui
-  name: tectonic-console
-  namespace: tectonic-system
+  annotations:
+    tectonic-operators.coreos.com/upgrade-strategy: Patch
+    tectonic-operators.coreos.com/upgrade-behaviour: UpgradeIfExists
 spec:
   replicas: 2
   selector:

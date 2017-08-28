@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: default-http-backend
   namespace: tectonic-system
+  annotations:
+    tectonic-operators.coreos.com/upgrade-strategy: Patch
+    tectonic-operators.coreos.com/upgrade-behaviour: UpgradeIfExists
+spec:
 spec:
   replicas: 1
   template:

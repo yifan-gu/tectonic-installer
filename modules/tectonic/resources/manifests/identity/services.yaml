@@ -6,6 +6,9 @@ metadata:
   labels:
     k8s-app: tectonic-identity
     component: identity
+  annotations:
+    tectonic-operators.coreos.com/upgrade-strategy: Patch
+    tectonic-operators.coreos.com/upgrade-behaviour: UpgradeIfExists
 spec:
   selector:
     k8s-app: tectonic-identity
@@ -20,6 +23,9 @@ kind: Service
 metadata:
   name: tectonic-identity-api
   namespace: tectonic-system
+  annotations:
+    tectonic-operators.coreos.com/upgrade-strategy: Patch
+    tectonic-operators.coreos.com/upgrade-behaviour: UpgradeIfExists
 spec:
   selector:
     k8s-app: tectonic-identity

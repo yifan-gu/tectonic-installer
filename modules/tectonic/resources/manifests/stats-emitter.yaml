@@ -6,6 +6,9 @@ metadata:
   labels:
     k8s-app: tectonic-stats-emitter
     component: stats-emitter
+  annotations:
+    tectonic-operators.coreos.com/upgrade-strategy: Patch
+    tectonic-operators.coreos.com/upgrade-behaviour: UpgradeIfExists
 spec:
   replicas: 1
   template:

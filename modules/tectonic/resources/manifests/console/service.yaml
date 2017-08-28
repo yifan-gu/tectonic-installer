@@ -6,6 +6,9 @@ metadata:
   labels:
     k8s-app: tectonic-console
     component: ui
+  annotations:
+    tectonic-operators.coreos.com/upgrade-strategy: Patch
+    tectonic-operators.coreos.com/upgrade-behaviour: UpgradeIfExists
 spec:
   selector:
     k8s-app: tectonic-console
