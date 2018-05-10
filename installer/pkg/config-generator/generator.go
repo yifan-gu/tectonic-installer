@@ -121,7 +121,7 @@ func (c *ConfigGenerator) addonConfig() (*kubeaddon.OperatorConfig, error) {
 			Kind:       kubeaddon.Kind,
 		},
 	}
-	addonConfig.CloudProvider = c.Platform
+	addonConfig.CloudProvider = c.Platform.String()
 	addonConfig.ClusterConfig.APIServerURL = c.getAPIServerURL()
 	registrySecret, err := generateRandomID(16)
 	if err != nil {
@@ -199,9 +199,9 @@ func (c *ConfigGenerator) tncoConfig() (*tnco.OperatorConfig, error) {
 	}
 
 	tncoConfig.ControllerConfig.ClusterDNSIP = cidrhost
+	tncoConfig.ControllerConfig.Platform = c.Platform.String()
 	tncoConfig.ControllerConfig.CloudProviderConfig = "" // TODO(yifan): Get CloudProviderConfig.
 	tncoConfig.ControllerConfig.ClusterName = c.Cluster.Name
-	tncoConfig.ControllerConfig.Platform = string(c.Cluster.Platform)
 	tncoConfig.ControllerConfig.BaseDomain = c.Cluster.BaseDomain
 	tncoConfig.ControllerConfig.EtcdInitialCount = c.Cluster.NodeCount(c.Cluster.Etcd.NodePools)
 	tncoConfig.ControllerConfig.AdditionalConfigs = []string{} // TODO(yifan): Get additional configs.
